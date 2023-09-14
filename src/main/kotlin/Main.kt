@@ -1,18 +1,13 @@
 fun main(args: Array<String>) {
+    val db: Database = Database();
 
-}
+    val categories: List<Category> = db.getCategories();
+    val features: List<Feature> = db.getFeatures();
 
-data class Category(val categoryId: Int, val name: String)
-data class Feature(val featureId: Int, val categoryId: Int, val title: String, var value: Int)
+    categories.sortedBy { it.categoryId };
+    features.sortedBy { it.featureId };
 
-fun getCategories(): List<Category> {
-    val test: List<Category> = mutableListOf();
-    return test;
-}
-
-private fun getFeatures(): List<Feature> {
-    val test: List<Feature> = mutableListOf();
-    return test;
+    val mergedList: List<Any> = mergeCategoriesAndFeatures(categories, features);
 }
 
 fun mergeCategoriesAndFeatures(categories: List<Category>, features: List<Feature>): List<Any> {
